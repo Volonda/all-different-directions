@@ -3,8 +3,12 @@ declare(strict_types = 1);
 
 namespace App\Domain\Type;
 
+use App\Domain\Exception\DomainException;
+
 /**
- * Float value with 2 digits after point
+ * Float value with 4 digits after point
+ *
+ * Format taken from example https://open.kattis.com/problems/alldifferentdirections
  */
 class FloatValue
 {
@@ -18,7 +22,14 @@ class FloatValue
      */
     public function __construct(float $value)
     {
-        $this->value = \round($value, 4);
+        $formattedValue = \round($value, 4);
+
+        if(false === $formattedValue)
+        {
+            throw new DomainException(\sprintf('Failed to convert float value %f to 4 digts after point', $value));
+        }
+
+        $this->value = $formattedValue;
     }
 
     /**

@@ -1,9 +1,9 @@
 <?php
 declare(strict_types = 1);
 
-namespace App\Tests\Application;
+namespace App\Tests\Domain\Type;
 
-use App\Application\FloatValueFormatter;
+use App\Domain\Type\FloatValue;
 use PHPUnit\Framework\TestCase;
 
 class FloatValueFormatterTest extends TestCase
@@ -18,9 +18,9 @@ class FloatValueFormatterTest extends TestCase
      *
      * @return void
      */
-    public function twoDigits(float $value, float $expectedValue): void
+    public function value(float $value, float $expectedValue): void
     {
-        static::assertEquals(FloatValueFormatter::twoDigits($value), $expectedValue);
+        static::assertEquals($expectedValue, (new FloatValue($value))->value());
     }
 
     /**
@@ -29,9 +29,9 @@ class FloatValueFormatterTest extends TestCase
     public function dataProvider(): array
     {
         return [
-            [1.00001, 1.00],
-            [1.555, 1.56],
-            [1.554, 1.55],
+            [1.000000001, 1.0000],
+            [1.55555, 1.5556],
+            [1.55554, 1.5555],
         ];
     }
 }

@@ -27,7 +27,7 @@ class RoutePointer
     private Location $location;
 
     /**
-     * State when object is reached final location
+     * State when object is reached a final location
      *
      * @var bool
      */

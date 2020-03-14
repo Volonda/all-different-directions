@@ -13,7 +13,7 @@ class InstructionCollection extends \ArrayIterator
     /**
      * @param Instruction[] $collection
      */
-    public function __construct(array $collection)
+    public function __construct(array $collection = [])
     {
         foreach($collection as $entry)
         {
