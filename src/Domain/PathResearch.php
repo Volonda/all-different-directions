@@ -30,7 +30,6 @@ class PathResearch
      * Calculate average final location of all possible routes
      *
      * @return Location
-     * @throws Exception\DomainException
      */
     public function averageDestination(): Location
     {
@@ -58,8 +57,6 @@ class PathResearch
 
     /**
      * Calculate distance between final location of average and worse route
-     *
-     * @throws Exception\DomainException
      */
     public function deviationLongestPath(): Distance
     {

@@ -22,21 +22,25 @@ class RowTest extends TestCase
      * @param string                $line
      * @param Location              $location
      * @param Degree                $course
-     * @param InstructionCollection $instrunctions
+     * @param InstructionCollection $instructions
      *
      * @return void
+     *
+     * @throws \Throwable
      */
-    public function output(string $line, Location $location, Degree $course, InstructionCollection $instrunctions): void
+    public function output(string $line, Location $location, Degree $course, InstructionCollection $instructions): void
     {
         $row = new Row($line);
 
         static::assertEquals($location, $row->initialLocation(), 'Check parsed initial location');
         static::assertEquals($course, $row->initialCourse(), 'Check parsed initial course');
-        static::assertEquals($instrunctions, $row->instructions(), 'Check parsed instructions');
+        static::assertEquals($instructions, $row->instructions(), 'Check parsed instructions');
     }
 
     /**
      * @return array[]
+     *
+     * @throws \Throwable
      */
     public function dataProvider(): array
     {

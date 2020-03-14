@@ -24,7 +24,7 @@ class Route
     /**
      * @param RoutePointer $pointer
      *
-     * @return bool
+     * @return void
      */
     public function proceed(RoutePointer $pointer): void
     {

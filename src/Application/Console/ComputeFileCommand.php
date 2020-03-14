@@ -17,7 +17,7 @@ class ComputeFileCommand extends Command
     /**
      * @var string
      */
-    protected static $defaultName = 'app:computre:file';
+    protected static $defaultName = 'app:compute:file';
 
     /**
      * @throws \Throwable
@@ -32,8 +32,10 @@ class ComputeFileCommand extends Command
      * @param OutputInterface $output
      *
      * @return int
+     *
+     * @throws \App\Application\Exception\ApplicationException
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $provider = new FileProvider($input->getArgument('file'));
 

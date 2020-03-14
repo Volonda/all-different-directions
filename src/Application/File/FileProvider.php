@@ -3,6 +3,7 @@ declare(strict_types = 1);
 
 namespace App\Application\File;
 
+use App\Application\Exception\ApplicationException;
 use App\Domain\PathResearch;
 use App\Domain\PotentialPath;
 use App\Domain\Route\Route;
@@ -30,8 +31,6 @@ class FileProvider
      * Iterate test data
      *
      * @return \Iterator<int,PathResearch>|PathResearch[]
-     *
-     * @throws \App\Domain\Exception\DomainException
      *
      * @throws ApplicationException
      */
@@ -99,7 +98,6 @@ class FileProvider
      * @return PathResearch
      *
      * @throws \App\Application\File\FileParserException
-     * @throws \App\Domain\Exception\DomainException
      */
     private function createPathResearch(array $rows): PathResearch
     {

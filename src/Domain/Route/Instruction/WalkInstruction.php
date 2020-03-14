@@ -29,6 +29,8 @@ final class WalkInstruction implements Instruction
 
     /**
      * @param RoutePointer $pointer
+     *
+     * @throws \App\Domain\Exception\DomainException
      */
     public function apply(RoutePointer $pointer): void
     {

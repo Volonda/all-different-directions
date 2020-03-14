@@ -45,6 +45,8 @@ class RoutePointer
 
     /**
      * @param Location $location
+     *
+     * @throws DomainException
      */
     public function moveToLocation(Location $location): void
     {
@@ -58,6 +60,8 @@ class RoutePointer
 
     /**
      * @param Degree $course
+     *
+     * @throws DomainException
      */
     public function changeCourse(Degree $course): void
     {

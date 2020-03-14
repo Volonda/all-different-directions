@@ -24,7 +24,7 @@ class InstructionCollection extends \ArrayIterator
     }
 
     /**
-     * Add entry instrunction
+     * Add entry instruction
      *
      * @param Instruction $value
      */

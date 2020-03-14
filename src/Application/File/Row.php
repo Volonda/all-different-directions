@@ -43,7 +43,6 @@ class Row
     /**
      * @return InstructionCollection
      * @throws FileParserException
-     * @throws \App\Domain\Exception\DomainException
      */
     public function instructions(): InstructionCollection
     {
@@ -104,7 +103,6 @@ class Row
     /**
      * @return Location
      * @throws FileParserException
-     * @throws \App\Domain\Exception\DomainException
      */
     public function initialLocation(): Location
     {
@@ -128,7 +126,6 @@ class Row
     /**
      * @return Degree
      * @throws FileParserException
-     * @throws \App\Domain\Exception\DomainException
      */
     public function initialCourse(): Degree
     {
