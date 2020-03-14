@@ -42,7 +42,7 @@ class FileProviderTest extends TestCase
 
         return [
             [
-                __DIR__ . '/../../Stub/input.txt',
+                __DIR__ . '/../../Stub/data.txt',
                 [
                     $values[0]['collection'],
                     $values[1]['collection']

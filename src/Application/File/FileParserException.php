@@ -26,7 +26,7 @@ class FileParserException extends ApplicationException
     {
         $this->context = $context;
 
-        parent::__construct($message, $code, $previous);
+        parent::__construct($message . ' (' . $this->context . ')', $code, $previous);
     }
 
     /**

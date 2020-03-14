@@ -37,6 +37,11 @@ class Row
      */
     public function __construct(string $rawData)
     {
+        if(false === (bool) \preg_match('#^(?:[\d\.\-]+ ){2}start [\d\.\-]+(?: [\w]+ [\d\.\-]+){1,}$#', $rawData))
+        {
+            throw new FileParserException('Invalid format test case row', $rawData);
+        }
+
         $this->data = $rawData;
     }
 

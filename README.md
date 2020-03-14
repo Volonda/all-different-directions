@@ -15,5 +15,5 @@ cd '%project_root_dir%'
 3. Run application 
 
 ```bash
-./shortcuts/run.sh input.txt
+./shortcuts/run.sh data.txt
 ```

@@ -51,7 +51,6 @@ class FileProvider
         $askedCount = 0;
         $routes = [];
 
-
         while(($line = \fgets($file)) !== false)
         {
             $line = \trim($line);
@@ -61,10 +60,8 @@ class FileProvider
                 continue;
             }
 
-            if(true === \is_numeric($line))
+            if(0 === $askedCount)
             {
-                $askedCount = (int) $line;
-
                 if(\count($routes) > 0)
                 {
                     $result = $this->createPathResearch($routes);
@@ -74,12 +71,16 @@ class FileProvider
                     yield $result;
                 }
 
-                continue;
-            }
+                if(true === \is_numeric($line))
+                {
+                    if(0 === $askedCount = (int) $line)
+                    {
+                        break;
+                    }
 
-            if(0 === $askedCount)
-            {
-                yield from [];
+                    //skip line with asked questions count
+                    continue;
+                }
             }
 
             $routes[] = new Row($line);
@@ -89,6 +90,7 @@ class FileProvider
 
         \fclose($file);
 
+        //if empty file
         yield from [];
     }
 
