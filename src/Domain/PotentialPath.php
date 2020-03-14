@@ -35,6 +35,8 @@ class PotentialPath
     }
 
     /**
+     * get route final location
+     *
      * @return Location
      */
     public function finalLocation(): Location
@@ -45,6 +47,8 @@ class PotentialPath
     }
 
     /**
+     * compute route final location is need
+     *
      * @return void
      */
     private function proceedIfNeed(): void

@@ -6,6 +6,9 @@ namespace App\Domain\Route;
 use App\Domain\Route\Instruction\Instruction;
 use App\Domain\Route\Instruction\InstructionCollection;
 
+/**
+ * Route description
+*/
 class Route
 {
     /**
@@ -22,6 +25,8 @@ class Route
     }
 
     /**
+     * Move pointer according to instructions
+     *
      * @param RoutePointer $pointer
      *
      * @return void
