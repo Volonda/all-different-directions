@@ -4,19 +4,19 @@ declare(strict_types = 1);
 namespace App\Domain\Type;
 
 /**
- * Место нахождения
+ * Location Value
  */
 class Location
 {
     /**
-     * Координата по оси x
+     * X axis coordinate
      *
      * @var float
      */
     private float $x;
 
     /**
-     * Координата по оси y
+     * Y axis coordinate
      *
      * @var float
      */

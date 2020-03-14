@@ -3,15 +3,17 @@ declare(strict_types = 1);
 
 namespace App\Domain\Route\Instruction;
 
-use App\Domain\Type\Human;
+use App\Domain\Route\RoutePointer;
 
 /**
- * Инструкция
+ * Route instruction
+ *
+ * How to change current position state
  */
 interface Instruction
 {
     /**
-     * @param Human $human
+     * @param RoutePointer $pointer
      */
-    public function apply(Human $human): void;
+    public function apply(RoutePointer $pointer): void;
 }

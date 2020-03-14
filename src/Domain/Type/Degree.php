@@ -3,33 +3,22 @@ declare(strict_types = 1);
 
 namespace App\Domain\Type;
 
-use App\Domain\Exception\DomainException;
-
 /**
- * Курс
+ * Degree Value
  */
 class Degree
 {
     /**
-     * Градусы
-     *
      * @var float
      */
-    private float $degree;
+    private float $value;
 
     /**
-     * @param float $degree
-     *
-     * @throws DomainException
+     * @param float $value
      */
-    public function __construct(float $degree)
+    public function __construct(float $value)
     {
-        if(\abs($degree) > 360.0)
-        {
-            throw new DomainException('Угол может быть от -360 до +360 граудсов');
-        }
-
-        $this->degree = $degree;
+        $this->value = $value;
     }
 
     /**
@@ -37,6 +26,6 @@ class Degree
      */
     public function value(): float
     {
-        return $this->degree;
+        return $this->value;
     }
 }

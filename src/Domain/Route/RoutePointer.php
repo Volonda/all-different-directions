@@ -1,26 +1,34 @@
 <?php
 declare(strict_types = 1);
 
-namespace App\Domain\Type;
+namespace App\Domain\Route;
 
 use App\Domain\Exception\DomainException;
+use App\Domain\Type\Degree;
+use App\Domain\Type\Location;
 
 /**
- * Человек
+ * Object which moving by route
  */
-class Human
+class RoutePointer
 {
     /**
+     * Current course
+     *
      * @var Degree
      */
     private Degree $course;
 
     /**
+     * Current position
+     *
      * @var Location
      */
     private Location $location;
 
     /**
+     * State when object is reached final location
+     *
      * @var bool
      */
     private bool $hasArrived = false;

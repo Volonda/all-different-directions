@@ -4,13 +4,11 @@ declare(strict_types = 1);
 namespace App\Domain\Type;
 
 /**
- * Дистанция
+ * Distance value
  */
 class Distance
 {
     /**
-     * путь
-     *
      * @var float
      */
     private float $value;

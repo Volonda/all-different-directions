@@ -4,18 +4,20 @@ declare(strict_types = 1);
 namespace App\Domain;
 
 use App\Domain\Route\Route;
-use App\Domain\Type\Human;
+use App\Domain\Route\RoutePointer;
 use App\Domain\Type\Location;
 
 /**
- * Возможный маршрут
+ * Possible route
+ *
+ * Path which needs to test
  */
 class PotentialPath
 {
     /**
-     * @var Human
+     * @var RoutePointer
      */
-    private Human $human;
+    private RoutePointer $pointer;
 
     /**
      * @var Route
@@ -23,12 +25,12 @@ class PotentialPath
     private Route $route;
 
     /** .
-     * @param Human $human
-     * @param Route $route
+     * @param RoutePointer $pointer
+     * @param Route        $route
      */
-    public function __construct(Human $human, Route $route)
+    public function __construct(RoutePointer $pointer, Route $route)
     {
-        $this->human = $human;
+        $this->pointer = $pointer;
         $this->route = $route;
     }
 
@@ -39,7 +41,7 @@ class PotentialPath
     {
         $this->proceedIfNeed();
 
-        return $this->human->currentLocation();
+        return $this->pointer->currentLocation();
     }
 
     /**
@@ -47,11 +49,11 @@ class PotentialPath
      */
     private function proceedIfNeed(): void
     {
-        if(true === $this->human->hasArrived())
+        if(true === $this->pointer->hasArrived())
         {
             return;
         }
 
-        $this->route->proceed($this->human);
+        $this->route->proceed($this->pointer);
     }
 }

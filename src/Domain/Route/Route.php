@@ -5,7 +5,6 @@ namespace App\Domain\Route;
 
 use App\Domain\Route\Instruction\Instruction;
 use App\Domain\Route\Instruction\InstructionCollection;
-use App\Domain\Type\Human;
 
 class Route
 {
@@ -23,18 +22,18 @@ class Route
     }
 
     /**
-     * @param Human $human
+     * @param RoutePointer $pointer
      *
      * @return bool
      */
-    public function proceed(Human $human): void
+    public function proceed(RoutePointer $pointer): void
     {
         /** @var Instruction $instruction */
         foreach($this->instructions as $instruction)
         {
-            $instruction->apply($human);
+            $instruction->apply($pointer);
         }
 
-        $human->makeHasArrived();
+        $pointer->makeHasArrived();
     }
 }

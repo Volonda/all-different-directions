@@ -3,12 +3,13 @@ declare(strict_types = 1);
 
 namespace App\Domain\Route\Instruction;
 
-
 use App\Domain\Type\Degree;
-use App\Domain\Type\Human;
+use App\Domain\Route\RoutePointer;
 
 /**
- * Инструкция повернуться
+ * Instruction to change course
+ *
+ * Turning on current place
  */
 final class TurnInstruction implements Instruction
 {
@@ -18,7 +19,7 @@ final class TurnInstruction implements Instruction
     private Degree $degree;
 
     /**
-     * @param Degree $degree
+     * @param Degree $degree - units to turn
      */
     public function __construct(Degree $degree)
     {
@@ -26,10 +27,10 @@ final class TurnInstruction implements Instruction
     }
 
     /**
-     * @param Human $human
+     * @param RoutePointer $pointer
      */
-    public function apply(Human $human): void
+    public function apply(RoutePointer $pointer): void
     {
-        $human->changeCourse(new Degree($human->currentCourse()->value() + $this->degree->value()));
+        $pointer->changeCourse(new Degree($pointer->currentCourse()->value() + $this->degree->value()));
     }
 }

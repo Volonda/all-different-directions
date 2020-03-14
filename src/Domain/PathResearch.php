@@ -7,11 +7,13 @@ use App\Domain\Type\Distance;
 use App\Domain\Type\Location;
 
 /**
- * Возможный маршрут
+ * Process of researching best route
  */
 class PathResearch
 {
     /**
+     * Collection of possible routes
+     *
      * @var PotentialPath[]
      */
     private array $pathCollection;
@@ -25,7 +27,7 @@ class PathResearch
     }
 
     /**
-     * Среднее значение местонахождения после прохождения пути
+     * Calculate average final location of all possible routes
      */
     public function averageDestination(): Location
     {
@@ -52,11 +54,11 @@ class PathResearch
     }
 
     /**
-     * Отклонение самого неточного маршрута
+     * Calculate distance between final location of average and worse route
      */
     public function deviationLongestPath(): Distance
     {
-        $longestDistance = 0.0;
+        $longestDistance = 0;
         $averageDestination = $this->averageDestination();
 
         /**

@@ -4,11 +4,13 @@ declare(strict_types = 1);
 namespace App\Domain\Route\Instruction;
 
 use App\Domain\Type\Distance;
-use App\Domain\Type\Human;
+use App\Domain\Route\RoutePointer;
 use App\Domain\Type\Location;
 
 /**
- * Инструкция двигаться
+ * Instruction to change location
+ *
+ * Calculating new location considering current course
  */
 final class WalkInstruction implements Instruction
 {
@@ -18,7 +20,7 @@ final class WalkInstruction implements Instruction
     private Distance $distance;
 
     /**
-     * @param Distance $distance
+     * @param Distance $distance - units to move
      */
     public function __construct(Distance $distance)
     {
@@ -26,12 +28,12 @@ final class WalkInstruction implements Instruction
     }
 
     /**
-     * @param Human $human
+     * @param RoutePointer $pointer
      */
-    public function apply(Human $human): void
+    public function apply(RoutePointer $pointer): void
     {
-        $currentLocation = $human->currentLocation();
-        $curse = $human->currentCourse()->value();
+        $currentLocation = $pointer->currentLocation();
+        $curse = $pointer->currentCourse()->value();
         $distance = $this->distance->value();
         $radians = \deg2rad($curse);
 
@@ -41,6 +43,6 @@ final class WalkInstruction implements Instruction
         $y = $currentLocation->y();
         $y += $distance * \sin($radians);
 
-        $human->moveToLocation(new Location($x, $y));
+        $pointer->moveToLocation(new Location($x, $y));
     }
 }

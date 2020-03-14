@@ -4,7 +4,9 @@ declare(strict_types = 1);
 namespace App\Domain\Route\Instruction;
 
 /**
- * Коллекция инструкций
+ * Collection of route instruction
+ *
+ * Instructions aggregate
  */
 class InstructionCollection extends \ArrayIterator
 {
@@ -22,6 +24,8 @@ class InstructionCollection extends \ArrayIterator
     }
 
     /**
+     * Add entry instrunction
+     *
      * @param Instruction $value
      */
     public function append($value): void
