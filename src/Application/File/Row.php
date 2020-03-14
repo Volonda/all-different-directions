@@ -10,30 +10,34 @@ use App\Domain\Type\Degree;
 use App\Domain\Type\Distance;
 use App\Domain\Type\Location;
 
+/**
+ * Test case row parser
+ */
 class Row
 {
     /**
-     *
+     * walk type
      */
     private const WALK_INSTRUCTION = 'walk';
+
     /**
-     *
+     * turn type
      */
     private const TURN_INSTRUCTION = 'turn';
 
     /**
+     * raw file line data
+     *
      * @var string
      */
     private string $data;
 
     /**
-     * Row constructor.
-     *
-     * @param string $data
+     * @param string $rawData
      */
-    public function __construct(string $data)
+    public function __construct(string $rawData)
     {
-        $this->data = $data;
+        $this->data = $rawData;
     }
 
     /**

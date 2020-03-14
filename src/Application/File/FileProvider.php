@@ -3,10 +3,14 @@ declare(strict_types = 1);
 
 namespace App\Application\File;
 
-use App\Application\Exception\ApplicationException;
 use App\Domain\PathResearch;
-use App\Tests\Domain\PathResearchTest;
+use App\Domain\PotentialPath;
+use App\Domain\Route\Route;
+use App\Domain\Route\RoutePointer;
 
+/**
+ * File test cases extractor
+ */
 class FileProvider
 {
     /**
@@ -23,6 +27,12 @@ class FileProvider
     }
 
     /**
+     * Iterate test data
+     *
+     * @return \Iterator<int,PathResearch>|PathResearch[]
+     *
+     * @throws \App\Domain\Exception\DomainException
+     *
      * @throws ApplicationException
      */
     public function iterate(): \Iterator
@@ -47,7 +57,7 @@ class FileProvider
         {
             $line = \trim($line);
 
-            if(true === empty($line))
+            if('' === $line)
             {
                 continue;
             }
@@ -58,12 +68,14 @@ class FileProvider
 
                 if(\count($routes) > 0)
                 {
-                    $result = $this->createTestCaseData($routes);
+                    $result = $this->createPathResearch($routes);
 
                     $routes = [];
 
                     yield $result;
                 }
+
+                continue;
             }
 
             if(0 === $askedCount)
@@ -81,14 +93,29 @@ class FileProvider
         yield from [];
     }
 
-    private function createTestCaseData(array $rows): PathResearch
+    /**
+     * @param Row[] $rows
+     *
+     * @return PathResearch
+     *
+     * @throws \App\Application\File\FileParserException
+     * @throws \App\Domain\Exception\DomainException
+     */
+    private function createPathResearch(array $rows): PathResearch
     {
+        $pathCollection = [];
+
         foreach($rows as $row)
         {
-          var_dump($row);
-          die();
+            $pathCollection[] = new PotentialPath(
+                new RoutePointer(
+                    $row->initialLocation(),
+                    $row->initialCourse()
+                ),
+                new Route($row->instructions())
+            );
         }
 
-        new PathResearch();
+        return new PathResearch($pathCollection);
     }
 }

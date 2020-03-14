@@ -22,7 +22,7 @@ class StubPathResearchCaseGenerator
     public function create(): \Generator
     {
         yield self::case1();
-       // yield self::case2();
+        yield self::case2();
     }
 
     /**
@@ -97,7 +97,6 @@ class StubPathResearchCaseGenerator
      */
     private static function case2(): array
     {
-        die('!!!!!');
         $collection = new PathResearch([
             //30 40 start 90 walk 5
             new PotentialPath(

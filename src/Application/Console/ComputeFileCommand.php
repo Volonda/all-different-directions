@@ -37,9 +37,11 @@ class ComputeFileCommand extends Command
     {
         $provider = new FileProvider($input->getArgument('file'));
 
-        foreach($provider->iterate() as $testCaseData)
+        foreach($provider->iterate() as $testCase)
         {
-            var_dump($testCaseData);
+            $destination = $testCase->averageDestination();
+
+            $output->writeln(\sprintf('%.6g %.6g %.6g', $destination->x(), $destination->y(), $testCase->deviationLongestPath()->value()));
         }
 
         return 0;
