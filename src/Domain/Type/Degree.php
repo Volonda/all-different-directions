@@ -6,26 +6,7 @@ namespace App\Domain\Type;
 /**
  * Degree Value
  */
-class Degree
+class Degree extends FloatValue
 {
-    /**
-     * @var float
-     */
-    private float $value;
 
-    /**
-     * @param float $value
-     */
-    public function __construct(float $value)
-    {
-        $this->value = $value;
-    }
-
-    /**
-     * @return float
-     */
-    public function value(): float
-    {
-        return $this->value;
-    }
 }

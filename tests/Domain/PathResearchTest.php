@@ -3,7 +3,6 @@ declare(strict_types = 1);
 
 namespace App\Tests\Domain;
 
-use App\Application\FloatValueFormatter;
 use App\Domain\PathResearch;
 use App\Domain\Type\Distance;
 use App\Domain\Type\Location;
@@ -24,12 +23,8 @@ class PathResearchTest extends TestCase
      */
     public function output(PathResearch $collection, Location $expectedLocation, Distance $expectedDistance): void
     {
-        #static::assertEquals($expectedLocation, $collection->averageDestination(), 'Check average distance');
-        static::assertEquals(
-            $expectedDistance,
-            new Distance(FloatValueFormatter::twoDigits($collection->deviationLongestPath()->value())),
-            'Check distance from average location'
-        );
+        static::assertEquals($expectedLocation, $collection->averageDestination(), 'Check average distance');
+        static::assertEquals($expectedDistance, $collection->deviationLongestPath(), 'Check distance from average location');
     }
 
     /**

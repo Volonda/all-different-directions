@@ -11,16 +11,16 @@ class Location
     /**
      * X axis coordinate
      *
-     * @var float
+     * @var FloatValue
      */
-    private float $x;
+    private FloatValue $x;
 
     /**
      * Y axis coordinate
      *
-     * @var float
+     * @var FloatValue
      */
-    private float $y;
+    private FloatValue $y;
 
     /**
      * @param float $x
@@ -28,8 +28,8 @@ class Location
      */
     public function __construct(float $x, float $y)
     {
-        $this->x = $x;
-        $this->y = $y;
+        $this->x = new FloatValue($x);
+        $this->y = new FloatValue($y);;
     }
 
     /**
@@ -37,7 +37,7 @@ class Location
      */
     public function x(): float
     {
-        return $this->x;
+        return $this->x->value();
     }
 
     /**
@@ -45,6 +45,6 @@ class Location
      */
     public function y(): float
     {
-        return $this->y;
+        return $this->y->value();
     }
 }
