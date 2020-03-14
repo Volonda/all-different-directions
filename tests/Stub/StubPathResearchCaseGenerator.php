@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 namespace App\Tests\Stub;
 
-use App\Domain\PathResearch;
+use App\Domain\PathResearcher;
 use App\Domain\PotentialPath;
 use App\Domain\Route\RoutePointer;
 use App\Domain\Route\Instruction\InstructionCollection;
@@ -24,7 +24,7 @@ class StubPathResearchCaseGenerator
     }
 
     /**
-     * @return PathResearch[]
+     * @return PathResearcher[]
      *
      * @throws \Throwable
      */
@@ -51,7 +51,7 @@ class StubPathResearchCaseGenerator
      */
     private static function case1(): array
     {
-        $collection = new PathResearch([
+        $collection = new PathResearcher([
             //87.342 34.30 start 0 walk 10.0
             new PotentialPath(
                 new RoutePointer(
@@ -112,7 +112,7 @@ class StubPathResearchCaseGenerator
      */
     private static function case2(): array
     {
-        $collection = new PathResearch([
+        $collection = new PathResearcher([
             //30 40 start 90 walk 5
             new PotentialPath(
                 new RoutePointer(

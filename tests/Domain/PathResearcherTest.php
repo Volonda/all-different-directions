@@ -3,28 +3,28 @@ declare(strict_types = 1);
 
 namespace App\Tests\Domain;
 
-use App\Domain\PathResearch;
+use App\Domain\PathResearcher;
 use App\Domain\Type\Distance;
 use App\Domain\Type\Location;
 use App\Tests\Stub\StubPathResearchCaseGenerator;
 use PHPUnit\Framework\TestCase;
 
-class PathResearchTest extends TestCase
+class PathResearcherTest extends TestCase
 {
     /**
      * @test
      *
      * @dataProvider dataProvider
      *
-     * @param PathResearch $collection
-     * @param Location     $expectedLocation
-     * @param Distance     $expectedDistance
+     * @param PathResearcher $collection
+     * @param Location       $expectedLocation
+     * @param Distance       $expectedDistance
      *
      * @return void
      *
      * @throws \Throwable
      */
-    public function output(PathResearch $collection, Location $expectedLocation, Distance $expectedDistance): void
+    public function output(PathResearcher $collection, Location $expectedLocation, Distance $expectedDistance): void
     {
         static::assertEquals((string) $expectedLocation->x(), self::normalizeFloat($collection->averageDestination()->x()), 'Check average distance (X)');
         static::assertEquals((string) $expectedLocation->y(), self::normalizeFloat($collection->averageDestination()->y()), 'Check average distance (Y)');

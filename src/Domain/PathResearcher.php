@@ -9,7 +9,7 @@ use App\Domain\Type\Location;
 /**
  * Process of researching best route
  */
-class PathResearch
+class PathResearcher
 {
     /**
      * Collection of possible routes
@@ -56,7 +56,7 @@ class PathResearch
     }
 
     /**
-     * Calculate distance between final location of average and worse route
+     * Calculate distance between average final location and worse route final location
      */
     public function deviationLongestPath(): Distance
     {

@@ -4,7 +4,7 @@ declare(strict_types = 1);
 namespace App\Application\File;
 
 use App\Application\Exception\ApplicationException;
-use App\Domain\PathResearch;
+use App\Domain\PathResearcher;
 use App\Domain\PotentialPath;
 use App\Domain\Route\Route;
 use App\Domain\Route\RoutePointer;
@@ -30,7 +30,7 @@ class FileProvider
     /**
      * Iterate test data
      *
-     * @return \Iterator<int,PathResearch>|PathResearch[]
+     * @return \Iterator<int,PathResearcher>|PathResearcher[]
      *
      * @throws ApplicationException
      */
@@ -95,11 +95,11 @@ class FileProvider
     /**
      * @param Row[] $rows
      *
-     * @return PathResearch
+     * @return PathResearcher
      *
      * @throws \App\Application\File\FileParserException
      */
-    private function createPathResearch(array $rows): PathResearch
+    private function createPathResearch(array $rows): PathResearcher
     {
         $pathCollection = [];
 
@@ -114,6 +114,6 @@ class FileProvider
             );
         }
 
-        return new PathResearch($pathCollection);
+        return new PathResearcher($pathCollection);
     }
 }
