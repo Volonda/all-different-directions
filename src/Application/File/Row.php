@@ -34,6 +34,8 @@ class Row
 
     /**
      * @param string $rawData
+     *
+     * @throws FileParserException
      */
     public function __construct(string $rawData)
     {
@@ -46,6 +48,8 @@ class Row
     }
 
     /**
+     * parse instructions
+     *
      * @return InstructionCollection
      * @throws FileParserException
      */
@@ -106,7 +110,10 @@ class Row
     }
 
     /**
+     * parse initial location
+     *
      * @return Location
+     *
      * @throws FileParserException
      */
     public function initialLocation(): Location
@@ -129,6 +136,8 @@ class Row
     }
 
     /**
+     * parse initial course
+     *
      * @return Degree
      * @throws FileParserException
      */

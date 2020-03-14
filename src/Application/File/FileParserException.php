@@ -12,27 +12,32 @@ use Throwable;
 class FileParserException extends ApplicationException
 {
     /**
-     * @var string
+     * @var string|null
      */
-    private string $context;
+    private ?string $context;
 
     /**
      * @param string         $message
-     * @param string         $context
+     * @param string|null    $context
      * @param int            $code
      * @param Throwable|null $previous
      */
-    public function __construct(string $message, string $context, $code = 0, Throwable $previous = null)
+    public function __construct(string $message, ?string $context = null, $code = 0, Throwable $previous = null)
     {
         $this->context = $context;
 
-        parent::__construct($message . ' (' . $this->context . ')', $code, $previous);
+        if(null !== $this->context)
+        {
+            $message = $message . ' (' . $this->context . ')';
+        }
+
+        parent::__construct($message, $code, $previous);
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getContext(): string
+    public function getContext(): ?string
     {
         return $this->context;
     }

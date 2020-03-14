@@ -50,9 +50,11 @@ class FileProvider
 
         $askedCount = 0;
         $routes = [];
+        $lineNumber = 0;
 
         while(($line = \fgets($file)) !== false)
         {
+            $lineNumber++;
             $line = \trim($line);
 
             if('' === $line)
@@ -62,15 +64,6 @@ class FileProvider
 
             if(0 === $askedCount)
             {
-                if(\count($routes) > 0)
-                {
-                    $result = $this->createPathResearch($routes);
-
-                    $routes = [];
-
-                    yield $result;
-                }
-
                 if(true === \is_numeric($line))
                 {
                     if(0 === $askedCount = (int) $line)
@@ -81,11 +74,32 @@ class FileProvider
                     //skip line with asked questions count
                     continue;
                 }
+                else
+                {
+                    throw new FileParserException(
+                        \sprintf('Expected row with questions count in line %d', $lineNumber),
+                        $line
+                    );
+                }
             }
 
             $routes[] = new Row($line);
 
             $askedCount--;
+
+            if(0 === $askedCount)
+            {
+                $result = $this->createPathResearch($routes);
+
+                $routes = [];
+
+                yield $result;
+            }
+        }
+
+        if(0 !== $askedCount)
+        {
+            throw new FileParserException(\sprintf('last test missed cases count %d', $askedCount));
         }
 
         \fclose($file);
