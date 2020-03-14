@@ -6,6 +6,7 @@ namespace App\Tests\Domain;
 use App\Domain\PathResearch;
 use App\Domain\Type\Distance;
 use App\Domain\Type\Location;
+use App\Tests\Stub\StubPathResearchCaseGenerator;
 use PHPUnit\Framework\TestCase;
 
 class PathResearchTest extends TestCase
@@ -33,7 +34,9 @@ class PathResearchTest extends TestCase
     /**
      * @param float $value
      *
-     * @return float
+     * @return string
+     *
+     * @throws \Throwable
      */
     private static function normalizeFloat(float $value): string
     {
@@ -47,7 +50,6 @@ class PathResearchTest extends TestCase
      */
     public function dataProvider(): array
     {
-        $generator = new StubPathResearchCaseGenerator();
 
         return \array_map(function($case)
         {
@@ -57,6 +59,6 @@ class PathResearchTest extends TestCase
                 $case['destination']
             ];
 
-        }, \iterator_to_array($generator->create()));
+        }, StubPathResearchCaseGenerator::create());
     }
 }

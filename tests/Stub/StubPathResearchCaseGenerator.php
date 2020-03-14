@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace App\Tests\Domain;
+namespace App\Tests\Stub;
 
 use App\Domain\PathResearch;
 use App\Domain\PotentialPath;
@@ -19,10 +19,21 @@ use App\Domain\Type\Location;
  */
 class StubPathResearchCaseGenerator
 {
-    public function create(): \Generator
+    private function __construct()
     {
-        yield self::case1();
-       // yield self::case2();
+    }
+
+    /**
+     * @return PathResearch[]
+     *
+     * @throws \Throwable
+     */
+    public static function create(): array
+    {
+        return [
+          self::case1(),
+          self::case2()
+        ];
     }
 
     /**
@@ -35,6 +46,8 @@ class StubPathResearchCaseGenerator
      * 97.1547 40.2334 7.63097
      *
      * @return array
+     *
+     * @throws \Throwable
      */
     private static function case1(): array
     {
@@ -94,10 +107,11 @@ class StubPathResearchCaseGenerator
      * 30 45 0
      *
      * @return array
+     *
+     * @throws \Throwable
      */
     private static function case2(): array
     {
-        die('!!!!!');
         $collection = new PathResearch([
             //30 40 start 90 walk 5
             new PotentialPath(

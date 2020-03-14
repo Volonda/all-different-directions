@@ -14,6 +14,7 @@ use App\Domain\Route\RoutePointer;
 use App\Domain\Type\Degree;
 use App\Domain\Type\Distance;
 use App\Domain\Type\Location;
+use App\Tests\Stub\StubPathResearchCaseGenerator;
 use PHPUnit\Framework\TestCase;
 
 class FileProviderTest extends TestCase
@@ -47,72 +48,14 @@ class FileProviderTest extends TestCase
      */
     public function dataProvider(): array
     {
+        $values = StubPathResearchCaseGenerator::create();
+
         return [
             [
-                __DIR__ . '/input.txt',
+                __DIR__ . '/../../Stub/input.txt',
                 [
-                    new PathResearch([
-                        //87.342 34.30 start 0 walk 10.0
-                        new PotentialPath(
-                            new RoutePointer(
-                                new Location(87.342, 34.30),
-                                new Degree(0)
-                            ),
-                            new Route(new InstructionCollection([
-                                new WalkInstruction(new Distance(10.0))
-                            ])),
-                        ),
-                        //2.6762 75.2811 start -45.0 walk 40 turn 40.0 walk 60
-                        new PotentialPath(
-                            new RoutePointer(
-                                new Location(2.6762, 75.2811),
-                                new Degree(-45.0)
-                            ),
-                            new Route(new InstructionCollection([
-                                new WalkInstruction(new Distance(40)),
-                                new TurnInstruction(new Degree(40.0)),
-                                new WalkInstruction(new Distance(60))
-                            ]))
-                        ),
-                        //58.518 93.508 start 270 walk 50 turn 90 walk 40 turn 13 walk 5
-                        new PotentialPath(
-                            new RoutePointer(
-                                new Location(58.518, 93.508),
-                                new Degree(270)
-                            ),
-                            new Route(new InstructionCollection([
-                                new WalkInstruction(new Distance(50)),
-                                new TurnInstruction(new Degree(90)),
-                                new WalkInstruction(new Distance(40)),
-                                new TurnInstruction(new Degree(13)),
-                                new WalkInstruction(new Distance(5))
-                            ]))
-                        )
-                    ]),
-                    new PathResearch([
-                        //30 40 start 90 walk 5
-                        new PotentialPath(
-                            new RoutePointer(
-                                new Location(30, 40),
-                                new Degree(90)
-                            ),
-                            new Route(new InstructionCollection([
-                                new WalkInstruction(new Distance(5))
-                            ]))
-                        ),
-                        //40 50 start 180 walk 10 turn 90 walk 5
-                        new PotentialPath(
-                            new RoutePointer(
-                                new Location(40, 50),
-                                new Degree(180)
-                            ),
-                            new Route(new InstructionCollection([
-                                new WalkInstruction(new Distance(10)),
-                                new TurnInstruction(new Degree(90)),
-                                new WalkInstruction(new Distance(5))
-                            ]))
-                        )
-                    ])
+                    $values[0]['collection'],
+                    $values[1]['collection']
                 ]
             ]
         ];
